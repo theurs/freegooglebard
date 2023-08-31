@@ -1,0 +1,4 @@
+sudo systemctl status telegram-bot-translator
+sudo journalctl -f -u telegram-bot-translator
+
+

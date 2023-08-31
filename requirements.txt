@@ -1,0 +1,7 @@
+bardapi
+bs4
+fake_useragent
+pylatexenc
+py_trans
+telebot
+textblob
