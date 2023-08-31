@@ -441,12 +441,11 @@ If not specified, then your language will be used.
 @trans de hi, how are you?
 @trans was ist das
 
-Supported languages: {', '.join(supported_langs_trans)}
-
-"""
+Supported languages: """
     if user_lang != 'en':
         help = my_trans.translate(help, user_lang)
     help = help.replace('@', '/')
+    help += ' ' + ', '.join(supported_langs_trans)
 
     pattern = r'^\/trans\s+((?:' + '|'.join(supported_langs_trans) + r')\s+)?\s*(.*)$'
 
