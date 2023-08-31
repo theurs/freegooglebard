@@ -365,7 +365,7 @@ def tts_thread(message: telebot.types.Message):
     if not text:
         msg = '/tts text to say with google voice'
         if lang != 'en':
-            msg = my_trans.translate(msg, lang)
+            msg = my_trans.translate(msg, lang) or msg
         bot.reply_to(message, msg)
         return
 
