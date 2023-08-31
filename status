@@ -1,4 +1,4 @@
-sudo systemctl status telegram-bot-translator
-sudo journalctl -f -u telegram-bot-translator
+sudo systemctl status telegram-bot-freegooglebard
+sudo journalctl -f -u telegram-bot-freegooglebard
 
 
