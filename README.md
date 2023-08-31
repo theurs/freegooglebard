@@ -10,6 +10,8 @@ After setting the token, you will be able to start chatting with Free Google Bar
 
 # How to get token?
 
+Based on https://github.com/dsdanielpark/Bard-API see it for more details.
+
 * Install Cookie-Editor extension.
 
 * Go to https://bard.google.com and login, you may need to use a VPN to access Bard in countries where it is not available.
