@@ -366,7 +366,7 @@ def tts_thread(message: telebot.types.Message):
         msg = '@tts text to say with google voice'
         if lang != 'en':
             msg = my_trans.translate(msg, lang) or msg
-        msg.replace('@', '/')
+        msg = msg.replace('@', '/')
         bot.reply_to(message, msg)
         return
 
