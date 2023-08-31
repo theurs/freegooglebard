@@ -59,6 +59,7 @@ HELP = r'''You need to get a google bard token to talk with Bard.
 Ensure you are copying the correct token corresponding to the account number, which can be found in the URL as bard.google.com/u/{account_number}.
 If your account number is /u/2, search for the token named __Secure-2PSID.
 If your account number is /u/3, search for the token named __Secure-3PSID.
+Try new account if this fail.
 
 4. Paste the token in the bot as [/token xxx...xxx]. 
 
