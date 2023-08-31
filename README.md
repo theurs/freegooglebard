@@ -44,11 +44,6 @@ slate or if you want to forget about what was said before.
 
 **/lang** - This command allows you to change the language that Free Google Bard uses. This is useful if you do not speak English or if you want Free Google Bard to use a different language to communicate with you.
 
-**/restart** - This command restarts Free Google Bard. This is useful if Free Google Bard is stuck or not working properly.
-
-**/init** - This command initializes Free Google Bard. This is necessary to do if you are using Free Google Bard for the first time or if you have changed the settings of the bot.
-
-
 # Install on self-hosted server
 Python 3.8+
 
@@ -105,7 +100,6 @@ start ./tb.py
 
 **Commands for admins**
 
-**/restart** to restart bot
+**/restart** - This command restarts Free Google Bard. This is useful if Free Google Bard is stuck or not working properly.
 
-**/init** to set commands and descriptions in many languages (auto translated)
-
+**/init** - This command initializes Free Google Bard. This is necessary to do if you are using Free Google Bard for the first time or if you have changed the settings of the bot.
