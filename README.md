@@ -47,3 +47,64 @@ slate or if you want to forget about what was said before.
 **/restart** - This command restarts Free Google Bard. This is useful if Free Google Bard is stuck or not working properly.
 
 **/init** - This command initializes Free Google Bard. This is necessary to do if you are using Free Google Bard for the first time or if you have changed the settings of the bot.
+
+
+# Install on self-hosted server
+Python 3.8+
+
+sudo apt-get update
+sudo apt install translate-shell python3-venv
+
+
+git clone https://github.com/theurs/freegooglebard.git
+
+python -m venv .tb-tr
+source ~/.tb/bin/activate
+
+pip install -r requirements.txt
+
+config file
+
+cfg.py
+```
+# Bot description, up to 512 symbols.
+bot_description = """Free Telegram bot for chatting with Google Bard
+
+You only need to get your own Google Bard token and then you can talk to bard in telegram.
+
+https://github.com/theurs/freegooglebard
+
+@theurs"""
+
+
+# a short description of the bot that is displayed on the bot's profile page and submitted
+# along with a link when users share the bot. Up to 120 characters.
+bot_short_description = """Free telegram bot for chatting with Google Bard"""
+
+
+# Bot name (pseudonym), this is not a unique name, you can call it whatever you like,
+# is not the name of the bot it responds to. Up to 64 characters.
+bot_name = "Free Google Bard"
+
+# bot call word, use it in chats for ask bot
+# Example - .bard how are you
+BOT_CALL_WORD = '.bard'
+
+# list of admins who can use admin commands (/restart etc)
+admins = [xxx,]
+
+
+# telegram bot token
+# @free_google_bard_bot
+token   = "xxx"
+```
+
+start ./tb.py
+
+
+**Commands for admins**
+
+**/restart** to restart bot
+
+**/init** to set commands and descriptions in many languages (auto translated)
+
