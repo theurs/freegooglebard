@@ -55,9 +55,7 @@ HELP = r'''You need to get a google bard token to talk with Bard.
 
 2. Go to https://bard.google.com and login, you may need to use a VPN to access Bard in countries where it is not available.
 
-3. Click on the extension icon and copy a token starting with __Secure-{account_number}PSID.
-
-For example, __Secure-1PSID
+3. Click on the extension icon and copy a token starting with [__Secure-1PSID]
 Ensure you are copying the correct token corresponding to the account number, which can be found in the URL as bard.google.com/u/{account_number}.
 If your account number is /u/2, search for the token named __Secure-2PSID.
 If your account number is /u/3, search for the token named __Secure-3PSID.
