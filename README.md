@@ -35,10 +35,15 @@ Special command ***/token copy*** may be used in chat to copy your private key.
 
 # Description of commands:
 
-• /start - This command greets you and briefly describes the features of Free Google Bard.
-• /token - This command allows you to set your personal Google Bard token. The token is necessary to access Google Bard.
-• /clear - This command clears the current dialog and starts a new one. This is useful if you want to start with a clean 
+*/start* - This command greets you and briefly describes the features of Free Google Bard.
+
+**/token** - This command allows you to set your personal Google Bard token. The token is necessary to access Google Bard.
+
+/clear - This command clears the current dialog and starts a new one. This is useful if you want to start with a clean 
 slate or if you want to forget about what was said before.
-• /lang - This command allows you to change the language that Free Google Bard uses. This is useful if you do not speak English or if you want Free Google Bard to use a different language to communicate with you.
-• /restart - This command restarts Free Google Bard. This is useful if Free Google Bard is stuck or not working properly.
-• /init - This command is an admin command that initializes Free Google Bard. This is necessary to do if you are using Free Google Bard for the first time or if you have changed the settings of the bot.
+
+/lang - This command allows you to change the language that Free Google Bard uses. This is useful if you do not speak English or if you want Free Google Bard to use a different language to communicate with you.
+
+/restart - This command restarts Free Google Bard. This is useful if Free Google Bard is stuck or not working properly.
+
+/init - This command is an admin command that initializes Free Google Bard. This is necessary to do if you are using Free Google Bard for the first time or if you have changed the settings of the bot.
