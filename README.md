@@ -46,6 +46,8 @@ slate or if you want to forget about what was said before.
 
 **/lang** - This command allows you to change the language that Free Google Bard uses. This is useful if you do not speak English or if you want Free Google Bard to use a different language to communicate with you.
 
+**/removeme** - This command allows you to remove your record (token etc) from Free Google Bard.
+
 # Install on self-hosted server
 Python 3.8+
 

@@ -287,6 +287,29 @@ def token(message: telebot.types.Message) -> None:
     return
 
 
+@bot.message_handler(commands=['removeme'])
+def removeme(message: telebot.types.Message):
+    """Remove user from DB"""
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    is_private = message.chat.type == 'private'
+    if not is_private:
+        user_id = chat_id
+    if user_id in DB:
+        del DB[user_id]
+        my_log.log_echo(message)
+        bot.reply_to(message, 'OK')
+        my_log.log_echo(message, 'OK')
+        return
+    else:
+        lang = message.from_user.language_code or 'en'
+        msg = 'User not found.'
+        if lang != 'en':
+            msg = my_trans.translate(msg, lang)
+        bot.reply_to(message, msg)
+        my_log.log_echo(message, msg)
+
+
 @bot.message_handler(content_types = ['voice', 'audio'])
 def handle_voice(message: telebot.types.Message): 
     """voice handler"""
