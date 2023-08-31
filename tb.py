@@ -417,6 +417,9 @@ def do_task(message):
             else:
                 user_name = '(public chat, it is not person) ' + (message.chat.username or message.chat.first_name or message.chat.title or 'noname')
             answer = my_bard.chat(message.text, user_id, token, lang, user_name)
+            if not answer:
+                # 1 more try
+                answer = my_bard.chat(message.text, user_id, token, lang, user_name)
             answer = utils.bot_markdown_to_html(answer)
             my_log.log_echo(message, answer)
             if answer:
