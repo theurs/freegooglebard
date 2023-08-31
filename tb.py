@@ -356,9 +356,13 @@ def tts_thread(message: telebot.types.Message):
     else:
         return
 
+    text = ''
     try:
-        text = message.text.split(' ', 1)[1]
+        text = message.text.split(' ', 1)[1].strip()
     except IndexError:
+        pass
+
+    if not text:
         msg = '/tts text to say with google voice'
         if lang != 'en':
             msg = my_trans.translate(msg, lang)
