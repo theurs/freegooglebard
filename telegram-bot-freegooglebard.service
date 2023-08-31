@@ -1,0 +1,15 @@
+[Unit]
+Description=Telegram Bot Free Google Bard Service
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/freegooglebard
+ExecStart=/home/ubuntu/.tb1/bin/python3 /home/ubuntu/freegooglebard/tb.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
