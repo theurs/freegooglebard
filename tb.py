@@ -4,6 +4,7 @@
 import io
 import html
 import os
+import re
 import time
 import threading
 import tempfile
@@ -35,6 +36,17 @@ if not os.path.exists('db'):
 
 # saved pairs of {user:(lang, token)}
 DB = my_dic.PersistentDict('db/db.pkl')
+
+
+supported_langs_trans = [
+        "af","am","ar","az","be","bg","bn","bs","ca","ceb","co","cs","cy","da","de",
+        "el","en","eo","es","et","eu","fa","fi","fr","fy","ga","gd","gl","gu","ha",
+        "haw","he","hi","hmn","hr","ht","hu","hy","id","ig","is","it","iw","ja","jw",
+        "ka","kk","km","kn","ko","ku","ky","la","lb","lo","lt","lv","mg","mi","mk",
+        "ml","mn","mr","ms","mt","my","ne","nl","no","ny","or","pa","pl","ps","pt",
+        "ro","ru","rw","sd","si","sk","sl","sm","sn","so","sq","sr","st","su","sv",
+        "sw","ta","te","tg","th","tl","tr","uk","ur","uz","vi","xh","yi","yo","zh",
+        "zh-TW","zu"]
 
 
 HELP = r'''You need to get a google bard token to talk with Bard.
@@ -400,6 +412,64 @@ def tts_thread(message: telebot.types.Message):
             my_log.log_echo(message, '[Send voice message]')
         else:
             msg = 'TTS failed.'
+            if lang != 'en':
+                msg = my_trans.translate(msg, lang)
+            bot.reply_to(message, msg)
+            my_log.log_echo(message, msg)
+
+
+@bot.message_handler(commands=['trans'])
+def trans(message: telebot.types.Message):
+    thread = threading.Thread(target=trans_thread, args=(message,))
+    thread.start()
+def trans_thread(message: telebot.types.Message):
+
+    my_log.log_echo(message)
+    
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    is_private = message.chat.type == 'private'
+    if not is_private:
+        user_id = chat_id
+    if user_id in DB:
+        user_lang = DB[user_id][0]
+    else:
+        user_lang = message.from_user.language_code or 'en'
+
+    help = f"""@trans [en|ru|uk|..] text to be translated into the specified language
+
+If not specified, then your language will be used.
+
+@trans de hi, how are you?
+@trans was ist das
+
+Supported languages: {', '.join(supported_langs_trans)}
+
+"""
+    if user_lang != 'en':
+        help = my_trans.translate(help, user_lang)
+    help = help.replace('@', '/')
+
+    pattern = r'^\/trans\s+((?:' + '|'.join(supported_langs_trans) + r')\s+)?\s*(.*)$'
+
+    match = re.match(pattern, message.text, re.DOTALL)
+
+    if match:
+        lang = match.group(1) or user_lang
+        text = match.group(2) or ''
+    else:
+        my_log.log_echo(message, help)
+        bot.reply_to(message, help)
+        return
+    lang = lang.strip()
+
+    with ShowAction(message, 'typing'):
+        translated = my_trans.translate(text, lang)
+        if translated:
+            bot.reply_to(message, translated)
+            my_log.log_echo(message, translated)
+        else:
+            msg = 'Ошибка перевода'
             if lang != 'en':
                 msg = my_trans.translate(msg, lang)
             bot.reply_to(message, msg)

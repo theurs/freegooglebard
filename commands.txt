@@ -2,6 +2,7 @@
 /token - Set your personal Google Bard token
 /clear - start new dialog, forgot what was talked before
 /tts - say text with google voice
+/trans - translate text with google translate
 /lang - change your locale
 /removeme - remove my record (token etc)
 /restart - admin command, restart a bot (not dialog)
