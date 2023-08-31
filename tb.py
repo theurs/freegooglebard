@@ -545,7 +545,7 @@ def clear_thread(message):
         bot.reply_to(message, translated)
         my_log.log_echo(message, translated)
     else:
-        translated = 'You have to provide a token. Use <code>/token</code> command.'
+        translated = 'You have to provide a token. Use [/token] command.'
         lang = message.from_user.language_code or 'en'
         if lang != 'en':
             translated = my_trans.translate(translated, lang)
@@ -571,9 +571,9 @@ def do_task(message):
 
     if user_id not in DB or DB[user_id][1] == '':
         if is_private:
-            msg = 'You have to provide a token. Use <code>/token</code> command.'
+            msg = 'You have to provide a token. Use [/token] command.'
         else:
-            msg = 'You have to provide a token. Use <code>/token copy</code> command to copy your private token.'
+            msg = 'You have to provide a token. Use [/token copy] command to copy your private token.'
         lang = message.from_user.language_code or 'en'
         if lang != 'en':
             translated = my_trans.translate(msg, lang)
