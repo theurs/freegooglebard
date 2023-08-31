@@ -47,9 +47,9 @@ Ensure you are copying the correct token corresponding to the account number, wh
 If your account number is /u/2, search for the token named __Secure-2PSID.
 If your account number is /u/3, search for the token named __Secure-3PSID.
 
-4. Paste the token in the bot as <code>/token xxx...xxx.</code>. 
+4. Paste the token in the bot as [/token xxx...xxx]. 
 
-You can set a token for group by coping the personal token, use <code>/token copy</code> command in chat.
+You can set a token for group by coping the personal token, use [/token copy] command in chat.
 '''
 
 
