@@ -1,5 +1,5 @@
-sudo systemctl restart telegram-bot-translator
-sudo systemctl status telegram-bot-translator
+sudo systemctl restart telegram-bot-freegooglebard
+sudo systemctl status telegram-bot-freegooglebard
 
 
-sudo journalctl -f -u telegram-bot-translator
+sudo journalctl -f -u telegram-bot-freegooglebard
