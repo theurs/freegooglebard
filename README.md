@@ -67,7 +67,7 @@ config file
 
 cfg.py
 ```
-# Bot description, up to 512 symbols.
+# Bot description, up to 512 symbols. Fewer characters for automatic translation to work properly.
 bot_description = """Free Telegram bot for chatting with Google Bard
 
 You only need to get your own Google Bard token and then you can talk to bard in telegram.
@@ -79,6 +79,7 @@ https://github.com/theurs/freegooglebard
 
 # a short description of the bot that is displayed on the bot's profile page and submitted
 # along with a link when users share the bot. Up to 120 characters.
+# Fewer characters for automatic translation to work properly.
 bot_short_description = """Free telegram bot for chatting with Google Bard"""
 
 
