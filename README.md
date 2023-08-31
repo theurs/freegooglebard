@@ -25,7 +25,7 @@ Once you have a token, you can set it in Free Google Bard using the **/token** c
 
 # How to use Free Google Bard?
 
-To start chatting with Free Google Bard, send a message to the bot
+To start chatting with Free Google Bard, send a message to the bot. You can send voice messages too.
 
 In a group you can send a message to the bot using **.bard** command and with reply to bards messages.
 
@@ -42,13 +42,15 @@ Special command **/token copy** may be used in chat to copy your private key.
 **/clear** - This command clears the current dialog and starts a new one. This is useful if you want to start with a clean 
 slate or if you want to forget about what was said before.
 
+**/tts** - This command allows you to say text with google voice.
+
 **/lang** - This command allows you to change the language that Free Google Bard uses. This is useful if you do not speak English or if you want Free Google Bard to use a different language to communicate with you.
 
 # Install on self-hosted server
 Python 3.8+
 
 sudo apt-get update
-sudo apt install translate-shell python3-venv
+sudo apt install translate-shell python3-venv ffmpeg
 
 
 git clone https://github.com/theurs/freegooglebard.git

@@ -1,7 +1,8 @@
 bardapi
 bs4
 fake_useragent
+gTTS
 pylatexenc
 py_trans
+SpeechRecognition
 telebot
-textblob

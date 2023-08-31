@@ -1,6 +1,7 @@
 /start - Hello and welcome
 /token - Set your personal Google Bard token
 /clear - start new dialog, forgot what was talked before
+/tts - say text with google voice
 /lang - change your locale
 /restart - admin command, restart a bot (not dialog)
 /init - admin command, initialize bot.

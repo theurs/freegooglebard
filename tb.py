@@ -6,6 +6,7 @@ import html
 import os
 import time
 import threading
+import tempfile
 
 import telebot
 
@@ -14,6 +15,8 @@ import my_bard
 import my_dic
 import my_log
 import my_trans
+import my_tts
+import my_stt
 import utils
 
 
@@ -282,6 +285,97 @@ def token(message: telebot.types.Message) -> None:
 
     bot.reply_to(message, html.escape(translated), parse_mode='HTML', disable_web_page_preview=True)
     return
+
+
+@bot.message_handler(content_types = ['voice', 'audio'])
+def handle_voice(message: telebot.types.Message): 
+    """voice handler"""
+    thread = threading.Thread(target=handle_voice_thread, args=(message,))
+    thread.start()
+def handle_voice_thread(message: telebot.types.Message):
+    """voice handler"""
+
+    my_log.log_media(message)
+    
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    is_private = message.chat.type == 'private'
+    if not is_private:
+        user_id = chat_id
+
+    if user_id not in DB:
+        return
+    lang = DB[user_id][0]
+
+    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+        file_path = temp_file.name
+    try:
+        file_info = bot.get_file(message.voice.file_id)
+    except AttributeError:
+        file_info = bot.get_file(message.audio.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+    with open(file_path, 'wb') as new_file:
+        new_file.write(downloaded_file)
+
+    with ShowAction(message, 'typing'):
+        text = my_stt.stt(file_path, lang)
+        os.remove(file_path)
+        text = text.strip()
+        if text:
+            reply_to_long_message(message, text)
+            my_log.log_echo(message, f'[ASR] {text}')
+        else:
+            msg = 'Did not recognize any text.'
+            if lang != 'en':
+                msg = my_trans.translate(msg, lang)
+            bot.reply_to(message, msg)
+            my_log.log_echo(message, '[ASR] no results')
+
+        if text:
+            message.text = text
+            echo_all(message)
+
+
+@bot.message_handler(commands=['tts']) 
+def tts(message: telebot.types.Message):
+    """Text to speech"""
+    thread = threading.Thread(target=tts_thread, args=(message,))
+    thread.start()
+def tts_thread(message: telebot.types.Message):
+    """Text to speech"""
+
+    my_log.log_echo(message)
+
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    is_private = message.chat.type == 'private'
+    if not is_private:
+        user_id = chat_id
+    if user_id in DB:
+        lang = DB[user_id][0]
+    else:
+        return
+
+    try:
+        text = message.text.split(' ', 1)[1]
+    except IndexError:
+        msg = '/tts text to say with google voice'
+        if lang != 'en':
+            msg = my_trans.translate(msg, lang)
+        bot.reply_to(message, msg)
+        return
+
+    with ShowAction(message, 'record_audio'):
+        audio = my_tts.tts(text, lang)
+        if audio:
+            bot.send_voice(message.chat.id, audio, reply_to_message_id = message.message_id)
+            my_log.log_echo(message, '[Send voice message]')
+        else:
+            msg = 'TTS failed.'
+            if lang != 'en':
+                msg = my_trans.translate(msg, lang)
+            bot.reply_to(message, msg)
+            my_log.log_echo(message, msg)
 
 
 def send_long_message(message: telebot.types.Message, resp: str, parse_mode:str = None, disable_web_page_preview: bool = None,
