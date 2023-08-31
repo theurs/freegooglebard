@@ -20,13 +20,13 @@ Based on https://github.com/dsdanielpark/Bard-API see it for more details.
 
 * For example, **__Secure-1PSID**
 
-      Ensure you are copying the correct cookie corresponding to the account number, which can be found in the URL as bard.google.com/u/{account_number}.
+Ensure you are copying the correct cookie corresponding to the account number, which can be found in the URL as bard.google.com/u/{account_number}.
 
-      If your account number is /u/2, search for the cookie named __Secure-2PSID.
+If your account number is /u/2, search for the cookie named __Secure-2PSID.
 
-      If your account number is /u/3, search for the cookie named __Secure-3PSID.
+If your account number is /u/3, search for the cookie named __Secure-3PSID.
 
-      Try new account if this fails.
+Try new account if this fails.
 
 Once you have a token, you can set it in Free Google Bard using the **/token** command. To do this, send a message to the bot with the text **/token your_token**.
 
