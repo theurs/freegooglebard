@@ -2,6 +2,7 @@ bardapi
 bs4
 fake_useragent
 gTTS
+prettytable
 pylatexenc
 py_trans
 SpeechRecognition
