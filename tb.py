@@ -64,6 +64,11 @@ Try new account if this fail.
 4. Paste the token in the bot as [/token xxx...xxx]. 
 
 You can set a token for group by coping the personal token, use [/token copy] command in chat.
+
+Other bots:
+chatGPT - @chat_GPT_free_007_bot
+all-in-one - @kun4sun_bot
+translator - @chats_translator_bot
 '''
 
 
